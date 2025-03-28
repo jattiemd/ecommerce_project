@@ -1,11 +1,11 @@
-import { banner } from "../services/api.js";
+import { getBanner } from "../services/api.js";
 import { useEffect, useState } from "react";
 
 function Home() {
   const [imgUrl, setImgUrl] = useState();
 
   useEffect(() => {
-    banner().then((url) => setImgUrl(url));
+    getBanner().then((url) => setImgUrl(url));
   }, []);
 
   return (
