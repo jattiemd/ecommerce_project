@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 function Navbar() {
 
     return (
-        <nav className="ml-5 mr-5  p-2">
+        <nav className="ml-5 mr-5 p-2">
             <div className="grid grid-cols-3 gap-2 mt-3">
                 <div className="col-span-2 text-xl">
                     <Link to={'/'}>Ecommerce-Store</Link>
@@ -22,7 +22,7 @@ function Navbar() {
             </div>    
             <div className="mt-6 flex justify-between">
                 <div className="text-xl">
-                    <Link to={'/productCategories'}>Products</Link>
+                    <Link to={'/productCategories'}>Products<small>»</small></Link>
                 </div>
                 <div className="flex">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 pt-0.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">

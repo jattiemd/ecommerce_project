@@ -1,4 +1,4 @@
-import { getBanner } from "../services/api.js";
+import { getBanner } from "../services/api";
 import { useEffect, useState } from "react";
 
 function Home() {
