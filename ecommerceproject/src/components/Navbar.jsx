@@ -50,9 +50,10 @@ function Navbar() {
                         }`}>
 
                             <Link to={'/productCategories'}>
-                            <div className="my-1 bg-black text-white p-2">
-                                View All
-                            </div>
+                                <div className="my-1 bg-black text-white p-2">View All Categories</div>
+                            </Link>
+                            <Link to={'/productList'}>
+                                <div className="my-1 bg-black text-white p-2">View All Products</div>
                             </Link>
 
                         {categoryList 

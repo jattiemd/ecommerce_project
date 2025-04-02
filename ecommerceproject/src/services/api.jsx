@@ -11,6 +11,18 @@ export const getBanner = async () => {
 };
 
 
+// Products List
+export const getProduts = async () => {
+    try {
+        const response = await fetch(`https://dummyjson.com/products?limit=0`);
+        const data = await response.json();
+        return data
+    } catch (error) {
+        console.log(`Error fetching Products: ${error}`);
+    }
+}
+
+
 // Product Categories
 export const getProductCategories = async () => {
     try {
