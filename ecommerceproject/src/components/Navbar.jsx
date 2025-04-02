@@ -58,8 +58,8 @@ function Navbar() {
 
                         {categoryList 
                         ? categoryList.map((category) => (
-                            <Link to={`/productCategory/${category.slug}`}>
-                                <div key={category.slug} className="my-2 hover:bg-black hover:text-white transition-all hover:scale-102 p-1 hover:p-3 duration-200 ease-in-out">
+                            <Link to={`/productCategory/${category.slug}`} key={category.slug}>
+                                <div className="my-2 hover:bg-black hover:text-white transition-all hover:scale-102 p-1 hover:p-3 duration-200 ease-in-out">
                                     <p>{category.name}</p>
                                 </div>
                             </Link>
