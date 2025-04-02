@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { getProductsByCategory, loader } from "../services/api";
+import { getProductsByCategory } from "../services/api";
 import { useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
+import Loader from "../components/Loader";
 
 
 function ProductCategory() {
@@ -27,7 +28,7 @@ function ProductCategory() {
 					{productCategory.products.map(product => <ProductCard product={product} key={product.id} />)}
 				</div>
 			) : 
-				loader
+				<Loader />
 			}
 		</div>
   );

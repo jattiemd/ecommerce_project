@@ -5,6 +5,7 @@ import ProductCategories from "./pages/ProductCategories.jsx";
 import Cart from "./pages/Cart.jsx";
 import ProductCategory from "./pages/ProductCategory.jsx";
 import Product from "./pages/Product.jsx";
+import Footer from "./components/Footer.jsx";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </main>
+      <Footer />
     </>
   );
 }

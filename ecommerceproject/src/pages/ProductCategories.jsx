@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { getProductCategories, loader } from "../services/api";
+import { getProductCategories } from "../services/api";
 import { Link } from "react-router-dom";
+import Loader from "../components/Loader";
 
 
 function ProductCategories() {
@@ -30,7 +31,7 @@ function ProductCategories() {
         }
       </div>
     ) : 
-      loader
+      <Loader />
     }
     </>
   );

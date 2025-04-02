@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom"
-import { getProduct, loader } from "../services/api";
+import { getProduct } from "../services/api";
 import { useEffect, useState } from "react";
 import Accordian from "../components/Accordian";
+import Loader from "../components/Loader";
 
 function Product() {
   const params = useParams();
@@ -71,7 +72,7 @@ function Product() {
             </div>
           </>
         ) : (
-          loader
+          <Loader />
         )}
       </div>
     );

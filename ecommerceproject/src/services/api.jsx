@@ -1,7 +1,3 @@
-// loading css
-export const loader = <span className="loader mx-auto mt-25"></span>
-
-
 // Banner Image
 export const getBanner = async () => {
     try {
