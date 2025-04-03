@@ -59,10 +59,22 @@ export const getProduct = async (productID) => {
 }
 
 
-// Sort 
+// Sort Products for Product List
 export const sortProducts = async (sortParam, orderParam) => {
     try {
         const response = await fetch(`https://dummyjson.com/products?sortBy=${sortParam}&order=${orderParam}&limit=0`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log(`Error Sorting Products: ${error}`);
+    }
+}
+
+
+// Sort Products for Product Category
+export const sortProductsCategory = async (categoryName, sortParam, orderParam) => {
+    try {
+        const response = await fetch(`https://dummyjson.com/products/category/${categoryName}?sortBy=${sortParam}&order=${orderParam}&limit=0`);
         const data = await response.json();
         return data;
     } catch (error) {

@@ -6,7 +6,6 @@ import ProductCard from "../components/ProductCard";
 
 function ProductList() {
     const [products, setProducts] = useState();
-    // const [pageNumber, setPageNumber] = useState(0)
 
     useEffect(() => {
         getProducts().then((data) => {
@@ -23,9 +22,6 @@ function ProductList() {
       })
     }
 
-    // Pagination
-    // const productsPerPage = 20;
-    // const pagesVisited = pageNumber * productsPerPage;
 
     return (
       <div>
@@ -50,7 +46,7 @@ function ProductList() {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 p-10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 p-10">
           {products ? (
             products.map((product) => <ProductCard product={product} key={product.id}/>)
           ) : (

@@ -4,7 +4,7 @@ function ProductCard({ product }) {
   
     return (  
       <div className="p-2 border border-gray-300 hover:bg-white hover:border hover:border-gray-500 hover:shadow-xl hover:rounded-xl transition duration-300 hover:scale-101">
-        <Link to={`/product/${product.id}`}>
+        <Link to={`/product/${product.id}/${product.title}`}>
           <img src={product.thumbnail} alt={product.title} className="bg-white mx-auto"></img>
           <p className="text-center">{product.title}</p>
           <div className="grid grid-cols-2 my-4">
