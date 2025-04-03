@@ -1,17 +1,43 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import { getProducts, sortProducts } from "../services/api"
 import Loader from "../components/Loader";
 import ProductCard from "../components/ProductCard";
+import { useInView } from 'react-intersection-observer'
 
 
 function ProductList() {
-    const [products, setProducts] = useState();
+    const [products, setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [page, setPage] = useState(1);
+    const [hasMoreData, setHasMoreData] = useState(true);
+    const [ref, inView] = useInView()
 
+    // Lazy Loading implementation
+    const fetchData = useCallback(async () => {
+      if (!inView || isLoading || !hasMoreData) return;
+      
+      setIsLoading(true);
+      const limit = 20;
+      const skip = (page - 1) * limit;
+      
+      getProducts(limit, skip).then((newData) => {
+        if (newData.products.length === 0) {          //If no more data is available
+          setHasMoreData(false);
+          setIsLoading(false);
+          return;
+        }
+        
+        setProducts(prevProducts => [...prevProducts, ...newData.products]);
+        setPage(prevPage => prevPage + 1);
+      })
+      
+      setIsLoading(false);
+      
+    }, [inView, isLoading, page, hasMoreData]);
+    
     useEffect(() => {
-        getProducts().then((data) => {
-            setProducts(data.products);
-        })
-    }, []);
+      fetchData()
+    }, [fetchData]);
 
     const handleFilter = () => {
       const sort = document.querySelector("select[name='sort']").value;
@@ -47,11 +73,10 @@ function ProductList() {
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 p-10">
-          {products ? (
-            products.map((product) => <ProductCard product={product} key={product.id}/>)
-          ) : (
-            <Loader />
-          )}
+          {products && products.map((product) => <ProductCard product={product} key={product.id}/>)}
+          {isLoading && products.length > 0 && <Loader />}
+          {!isLoading && !hasMoreData && <p>End of products List</p>}
+          <div ref={ref} className="h-[60px]">In View</div>
         </div>
       </div>
     );
