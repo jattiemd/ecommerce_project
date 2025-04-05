@@ -30,7 +30,9 @@ function Navbar() {
                 </div>
                 <div className="flex justify-end">
                     <span className="flex mr-5">
-                        <img width="30" height="30" src="https://img.icons8.com/fluency-systems-filled/50/guest-male.png" alt="guest-male"/>
+                        <Link to={'/login'}>
+                            <img width="30" height="30" src="https://img.icons8.com/fluency-systems-filled/50/guest-male.png" alt="guest-male"/>
+                        </Link>
                     </span>
                     <span>
                         <Link to={'/cart'}>
@@ -73,7 +75,7 @@ function Navbar() {
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 pt-0.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
-                    <input className="ml-2 outline-none rounded-lg bg-gray-200 sm:w-64 pl-2" type="text" placeholder="Search Products" />
+                    <input className="ml-2 outline-none rounded-lg bg-gray-200 focus:bg-gray-100 sm:w-64 pl-2" type="text" placeholder="Search Products" />
                 </div>
             </div>    
         </nav>

@@ -7,13 +7,17 @@ import ProductCategory from "./pages/ProductCategory.jsx";
 import Product from "./pages/Product.jsx";
 import Footer from "./components/Footer.jsx";
 import ProductList from "./pages/ProductList.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
 
 
 function App() {
 
   return (
     <>
+    <header>
       <Navbar />
+    </header>
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -21,10 +25,14 @@ function App() {
           <Route path="/productCategories" element={<ProductCategories />} />
           <Route path="/productCategory/:categoryName" element={<ProductCategory />} />
           <Route path="/product/:productID/:productName" element={<Product />} />
+          <Route path="/login" element={<Login />}/>
+          <Route path="/register" element={<Register />}/>
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </main>
-      <Footer />
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }
