@@ -81,3 +81,43 @@ export const sortProductsCategory = async (categoryName, sortParam, orderParam) 
         console.log(`Error Sorting Products: ${error}`);
     }
 }
+
+
+// Login User
+export const loginUser = async (username, password) => {
+    try {
+        const response = await fetch('https://dummyjson.com/user/login', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                username: username,
+                password: password,
+            })
+        })
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log(`Error Fetching users: ${error}`);
+    }
+}
+
+
+// Add User
+export const addUser = async (firstName, lastName, email, password) => {
+    try {
+        const response = await fetch('https://dummyjson.com/users/add', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password,
+            })
+        })
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log(`Error Adding user: ${error}`);
+    }
+}
