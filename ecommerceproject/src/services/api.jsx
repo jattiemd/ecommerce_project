@@ -121,3 +121,18 @@ export const addUser = async (firstName, lastName, email, password) => {
         console.log(`Error Adding user: ${error}`);
     }
 }
+
+// Get User
+export const getUser = async (authToken) => {
+    try {
+        const response = await fetch('https://dummyjson.com/user/me', {
+            method: 'GET',
+            headers: {'Authorization': `Bearer ${authToken}`},
+            credentials: 'omit'
+        })
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log(`Error getting user data: ${error}`);
+    }
+}

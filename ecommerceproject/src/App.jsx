@@ -9,15 +9,19 @@ import Footer from "./components/Footer.jsx";
 import ProductList from "./pages/ProductList.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
+import { AuthContextProvider } from "./contexts/auth-context.jsx";
+import PrivateRoute from "./HOC/PrivateRoute.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 
 
 function App() {
 
   return (
     <>
-    <header>
-      <Navbar />
-    </header>
+    <AuthContextProvider>
+      <header>
+        <Navbar />
+      </header>
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -28,11 +32,13 @@ function App() {
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
           <Route path="/cart" element={<Cart />} />
+          <Route path="/dashboard" element={<PrivateRoute> <Dashboard /> </PrivateRoute>} />
         </Routes>
       </main>
       <footer>
         <Footer />
       </footer>
+    </AuthContextProvider>
     </>
   );
 }

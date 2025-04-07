@@ -1,12 +1,14 @@
-import { useState } from "react"
-import ProductNavbar from "./ProductNavbar"
-import { Link } from "react-router-dom"
+import { useContext, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import { getProductCategories } from "../services/api";
 import Loader from './Loader'
+import AuthContext from "../contexts/auth-context";
 
 function Navbar() {
     const [dropDown, setDropDown] = useState(false);
     const [categoryList, setCategoryList] = useState();
+    const { authToken, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const openDropDown = () => {
         setDropDown(true);
@@ -21,6 +23,15 @@ function Navbar() {
         setDropDown(!dropDown)
     }
 
+    const handlLoginLogout = () => {
+        if (authToken) {
+            logout();
+            window.location.reload();
+        } else {
+            navigate('/login');
+        }
+    }
+
 
     return (
         <nav className="ml-5 mr-5 p-2">
@@ -30,7 +41,12 @@ function Navbar() {
                 </div>
                 <div className="flex justify-end">
                     <span className="flex mr-5">
-                        <Link to={'/login'}>
+                        <button className="bg-black text-white px-2 cursor-pointer" onClick={handlLoginLogout}>
+                            {authToken ? "Logout" : "Login"}
+                        </button>
+                    </span>
+                    <span className="flex mr-5">
+                        <Link to={'/dashboard'}>
                             <img width="30" height="30" src="https://img.icons8.com/fluency-systems-filled/50/guest-male.png" alt="guest-male"/>
                         </Link>
                     </span>

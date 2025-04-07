@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from 'yup'
 import { addUser } from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const schema = yup.object().shape({
@@ -13,6 +14,7 @@ function Register() {
     confirmPassword: yup.string().oneOf([yup.ref("password"), null], "Passwords don't match").required("Confirm Password")
   });
 
+  const navigate = useNavigate();
   const {register, handleSubmit, reset, formState: {errors}} = useForm({
     resolver: yupResolver(schema)
   });
@@ -25,8 +27,10 @@ function Register() {
       formData.password
     ).then(data => {
       console.log(data);
+      alert("user Registered!");
+      navigate('/login')
     })
-    reset();
+    
   };
 
   

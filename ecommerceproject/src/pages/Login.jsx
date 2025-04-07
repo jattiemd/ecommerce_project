@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import * as yup from 'yup'
 import { loginUser } from '../services/api';
 
@@ -11,14 +11,17 @@ function Login() {
     password: yup.string().required("Please Enter your password"),
   });
 
+  const navigate = useNavigate();
   const {register, handleSubmit, reset, formState:{errors}} = useForm({
     resolver: yupResolver(schema)
   });
   
   const onSubmit = (formData) => {
     loginUser(formData.username, formData.password).then(data => {
-      console.log(data);
-      reset();
+      localStorage.setItem('authToken', data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
+      navigate('/dashboard');
+      window.location.reload();
     })
   }
 
