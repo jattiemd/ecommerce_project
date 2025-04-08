@@ -12,6 +12,10 @@ import Register from "./pages/Register.jsx";
 import { AuthContextProvider } from "./contexts/auth-context.jsx";
 import PrivateRoute from "./HOC/PrivateRoute.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
+import CartContextProvider from "./contexts/cart-context.jsx";
+import { ToastContainer, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function App() {
@@ -19,6 +23,7 @@ function App() {
   return (
     <>
     <AuthContextProvider>
+      <CartContextProvider>
       <header>
         <Navbar />
       </header>
@@ -29,15 +34,29 @@ function App() {
           <Route path="/productCategories" element={<ProductCategories />} />
           <Route path="/productCategory/:categoryName" element={<ProductCategory />} />
           <Route path="/product/:productID/:productName" element={<Product />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
-          <Route path="/cart" element={<Cart />} />
           <Route path="/dashboard" element={<PrivateRoute> <Dashboard /> </PrivateRoute>} />
         </Routes>
       </main>
       <footer>
         <Footer />
       </footer>
+      <ToastContainer 
+        position="bottom-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Slide}
+      />
+      </CartContextProvider>
     </AuthContextProvider>
     </>
   );

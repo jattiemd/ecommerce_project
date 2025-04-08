@@ -75,8 +75,8 @@ function ProductList() {
         <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 p-10">
           {products && products.map((product) => <ProductCard product={product} key={product.id}/>)}
           {isLoading && products.length > 0 && <Loader />}
-          {!isLoading && !hasMoreData && <p>End of products List</p>}
-          <div ref={ref} className="h-[60px]">In View</div>
+          
+          <div ref={ref} className="h-[60px]"></div>
         </div>
       </div>
     );

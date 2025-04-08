@@ -122,6 +122,7 @@ export const addUser = async (firstName, lastName, email, password) => {
     }
 }
 
+
 // Get User
 export const getUser = async (authToken) => {
     try {
@@ -134,5 +135,47 @@ export const getUser = async (authToken) => {
         return data;
     } catch (error) {
         console.log(`Error getting user data: ${error}`);
+    }
+}
+
+
+// Add cart Should I spread the products (productID, qty)?
+export const createNewCart = async (userID, products) => {
+    try {
+        const response = await fetch('https://dummyjson.com/carts/add', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                userId: userID,
+                products: [
+                    ...products
+                ]
+            })
+        })
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log(`Error creating new cart: ${error}`);
+    }
+}
+
+
+// Update Cart
+export const updateCart = async (userID, products) => {
+    try {
+        const response = await fetch(`https://dummyjson.com/carts/${userID}`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                merge: true,
+                products: [
+                    ...products
+                ]       
+            })
+        })
+        const data = await response.json();
+        return data
+    } catch (error) {
+        console.log(`Error updating cart: ${error}`);
     }
 }

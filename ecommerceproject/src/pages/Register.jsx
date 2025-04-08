@@ -4,6 +4,9 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from 'yup'
 import { addUser } from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify'
+import ToastMsg from '../components/Toast';
+
 
 function Register() {
   const schema = yup.object().shape({
@@ -27,10 +30,9 @@ function Register() {
       formData.password
     ).then(data => {
       console.log(data);
-      alert("user Registered!");
+      toast(<ToastMsg message={"Successfully Registered!"} />);
       navigate('/login')
     })
-    
   };
 
   
@@ -68,7 +70,7 @@ function Register() {
           </div>
         </div>
         <div className="my-6">
-          <button className="flex mx-auto bg-black text-white hover:bg-white hover:text-black hover:border hover:border-gray-400 px-4 py-1 text-lg cursor-pointer">Login</button>
+          <button className="flex mx-auto bg-black text-white hover:bg-white hover:text-black hover:border hover:border-gray-400 px-4 py-1 text-lg cursor-pointer">Submit</button>
           <p className="text-center text-xs mt-2">
             Already a member? <Link to={"/login"} className="font-semibold underline underline-offset-2">Login Here</Link>
           </p>

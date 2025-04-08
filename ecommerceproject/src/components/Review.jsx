@@ -1,4 +1,4 @@
-function Review({ rating, reviewer, comment, date }) {
+function Review({ rating, reviewer, comment, date}) {
   
   return (
     <>

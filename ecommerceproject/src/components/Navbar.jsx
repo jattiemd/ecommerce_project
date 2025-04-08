@@ -3,11 +3,13 @@ import { Link, useNavigate } from "react-router-dom"
 import { getProductCategories } from "../services/api";
 import Loader from './Loader'
 import AuthContext from "../contexts/auth-context";
+import { CartContext } from "../contexts/cart-context";
 
 function Navbar() {
     const [dropDown, setDropDown] = useState(false);
     const [categoryList, setCategoryList] = useState();
     const { authToken, logout } = useContext(AuthContext);
+    const { cart } = useContext(CartContext);
     const navigate = useNavigate();
 
     const openDropDown = () => {
@@ -45,16 +47,20 @@ function Navbar() {
                             {authToken ? "Logout" : "Login"}
                         </button>
                     </span>
-                    <span className="flex mr-5">
-                        <Link to={'/dashboard'}>
-                            <img width="30" height="30" src="https://img.icons8.com/fluency-systems-filled/50/guest-male.png" alt="guest-male"/>
-                        </Link>
-                    </span>
+                        {authToken ? 
+                            <span className="flex mr-5">
+                                <Link to={'/dashboard'}>
+                                    <img width="30" height="30" src="https://img.icons8.com/fluency-systems-filled/50/guest-male.png" alt="guest-male"/>
+                                </Link>
+                            </span>
+                        :   
+                            <></>
+                        }
                     <span>
                         <Link to={'/cart'}>
                             <img width="30" height="30" src="https://img.icons8.com/dotty/80/shopping-cart.png" alt="shopping-cart"/>
                         </Link>
-                    </span>
+                    </span><sup>{cart.length == 0 ? '' : cart.length }</sup>
                 </div>
             </div>    
             <div className="mt-6 flex justify-between">
