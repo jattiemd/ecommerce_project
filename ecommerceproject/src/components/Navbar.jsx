@@ -43,7 +43,7 @@ function Navbar() {
                 </div>
                 <div className="flex justify-end">
                     <span className="flex mr-5">
-                        <button className="bg-black text-white px-2 cursor-pointer" onClick={handlLoginLogout}>
+                        <button className="bg-black text-white hover:bg-white hover:text-black hover:border hover:border-gray-400 px-2 cursor-pointer" onClick={handlLoginLogout}>
                             {authToken ? "Logout" : "Login"}
                         </button>
                     </span>
@@ -74,10 +74,10 @@ function Navbar() {
                         }`}>
 
                             <Link to={'/productCategories'}>
-                                <div className="my-1 bg-black text-white p-2">View All Categories</div>
+                                <div className="my-1 bg-black text-white hover:bg-white hover:text-black hover:border hover:border-gray-400 p-2">View All Categories</div>
                             </Link>
                             <Link to={'/productList'}>
-                                <div className="my-1 bg-black text-white p-2">View All Products</div>
+                                <div className="my-1 bg-black text-white hover:bg-white hover:text-black hover:border hover:border-gray-400 p-2">View All Products</div>
                             </Link>
 
                         {categoryList 

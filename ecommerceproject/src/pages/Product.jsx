@@ -9,19 +9,23 @@ import { CartContext } from "../contexts/cart-context";
 function Product() {
   const params = useParams();
   const [product, setProduct] = useState();
-  const { addToCart } = useContext(CartContext);
+  const [quantity, setQuantity] = useState(1);
+  const { addToCart, getProductQuantity } = useContext(CartContext);
     
   useEffect(() => {
     getProduct(params.productID).then(data => {
       setProduct(data);
-    })
+      setQuantity(getProductQuantity(parseInt(params.productID)));
+    });
   }, [params.productID])
 
   const handleAddToCart = () => {
-    let quantity = parseInt(document.getElementById('qty').value);
     addToCart(product.id, quantity);
   };
-  
+
+  const handleQuantity = (e) => {
+    setQuantity(parseInt(e.target.value));
+  }
 
   return (
     <div>
@@ -70,7 +74,7 @@ function Product() {
                 </div>
               </div>
               <div className="mt-5">
-                Qty: <input id="qty" type="number" min={1} max={5} className="text-center outline-none bg-gray-200 focus:bg-gray-100 w-10"/>
+                Qty: <input onChange={handleQuantity} id="qty" type="number" value={quantity} min={1} max={5} className="text-center outline-none bg-gray-200 focus:bg-gray-100 w-10"/>
               </div>
               <div className="mt-8">
                 <Accordian title={"Description"} content={product.description} open={true} />

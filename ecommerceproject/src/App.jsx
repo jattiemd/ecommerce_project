@@ -15,6 +15,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import CartContextProvider from "./contexts/cart-context.jsx";
 import { ToastContainer, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Checkout from "./pages/Checkout.jsx";
 
 
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
           <Route path="/dashboard" element={<PrivateRoute> <Dashboard /> </PrivateRoute>} />
+          <Route path="/checkout" element={<PrivateRoute> <Checkout /> </PrivateRoute>} />
         </Routes>
       </main>
       <footer>

@@ -14,14 +14,14 @@ function Dashboard() {
 
 
     return (
-      <>
+      <div className="mb-200">
         <div className="flex justify-center mt-4">
           <h3 className="p-3 text-center text-4xl border-t border-b w-104">
             User
           </h3>
         </div>
         
-      </>
+      </div>
     );
 }
 

@@ -22,7 +22,7 @@ function ProductCategories() {
     {productCategories ? (
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 p-10">
         {productCategories.map(category => (
-          <div className="rounded-xl bg-gray-200 border border-gray-400 p-5 w-74" key={category.slug}>
+          <div className="rounded bg-black text-white hover:bg-white hover:text-black hover:border hover:border-gray-400 transition-all hover:scale-102 p-5 hover:p-6 duration-200 ease-in-out w-74" key={category.slug}>
             <Link to={`/productCategory/${category.slug}`}>
               <p className="text-center text-lg">{category.name}</p>
             </Link>
