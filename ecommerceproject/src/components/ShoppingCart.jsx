@@ -61,7 +61,7 @@ function ShoppingCart() {
 				</table>
 			</div>
 			<div className="sm:col-span-1 bg-gray-50 border border-gray-200 rounded">
-				<OrderSummary cartTotal={cartTotal} discount={0.2} btnName={"Checkout"} redirect={'/checkout'} onclick={""}/>
+				<OrderSummary cartTotal={cartTotal} discount={0.2} btnName={"Checkout"} redirect={'/checkout'}/>
 			</div>
       </div>     
     </div>

@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import ToastMsg from "../components/Toast";
 
 function Checkout() {
-	const { cart, cartTotal } = useContext(CartContext);
+	const { cart, setCart, cartTotal } = useContext(CartContext);
 	const [ deliveryType, setDeliveryType ] = useState('deliver');
 	// const [ city, setCity] = useState('cape town');
 	// const [ branch, setBranch ] = useState('central business district');
@@ -32,7 +32,7 @@ function Checkout() {
 	}
 
 	const handlePurchase = () => {
-		localStorage.setItem('order',JSON.stringify(order));
+		localStorage.setItem('order', JSON.stringify(order));
 		const newOrder = {
 			orderId: cart.length+1,
 			products: [
@@ -42,7 +42,10 @@ function Checkout() {
 			total: cartTotal
 		}
 		setOrder(prevOrder => [...prevOrder, newOrder]);
-		localStorage.removeItem('cart');
+		console.log('Before clearing cart', cart);
+		localStorage.setItem('cart', JSON.stringify([]));
+		setCart([])
+		console.log(cart);
 		toast(<ToastMsg message={"Order placed successfully!"} />);
 	}
 
@@ -50,9 +53,9 @@ function Checkout() {
 	return (
 		<div className="mb-200">
 			<div className="flex justify-center mt-4">
-          <h3 className="p-3 text-center text-4xl border-t border-b w-104">
-            Checkout
-          </h3>
+				<h3 className="p-3 text-center text-4xl border-t border-b w-104">
+					Checkout
+				</h3>
 			</div>
 			<div className="sm:p-5 grid grid-cols-1 sm:grid-cols-3 gap-x-3 gap-y-6">
 				<div className="sm:col-span-2 bg-gray-50 border border-gray-200 rounded">
@@ -97,7 +100,7 @@ function Checkout() {
 					</div>
 				</div>
 				<div className="sm:col-span-1 bg-gray-50 border border-gray-200 rounded">
-					<OrderSummary cartTotal={cartTotal} discount={0.2} btnName={"Purchase"} redirect={'/'} onclick={handlePurchase}/>
+					<OrderSummary cartTotal={cartTotal} discount={0.2} btnName={"Purchase"} redirect={'/orderSuccess'} onclick={handlePurchase}/>
 				</div>
 			</div>
 		</div>
