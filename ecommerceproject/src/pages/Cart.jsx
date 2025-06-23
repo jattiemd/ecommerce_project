@@ -9,11 +9,7 @@ function Cart() {
 
   return (
     <div className={cart ? 'mb-75': 'mb-200'}>
-      <div className="flex justify-center mt-4">
-        <h3 className="p-3 text-center text-4xl border-t border-b w-104">
-          Shopping Cart
-        </h3>
-      </div>
+      <hr className="my-10"/>
       <div className="mt-4">
         {cart.length === 0 ? (
             <div className="p-3 text-center text-xl">

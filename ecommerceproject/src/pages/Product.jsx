@@ -74,7 +74,7 @@ function Product() {
                 </div>
               </div>
               <div className="mt-5">
-                Qty: <input onChange={handleQuantity} id="qty" type="number" value={quantity} min={1} max={5} className="text-center outline-none bg-gray-200 focus:bg-gray-100 w-10"/>
+                Qty: <input onChange={handleQuantity} id="qty" type="number" value={quantity} min={1} max={product.stock} className="text-center outline-none bg-gray-200 focus:bg-gray-100 w-10"/>
               </div>
               <div className="mt-8">
                 <Accordian title={"Description"} content={product.description} open={true} />
